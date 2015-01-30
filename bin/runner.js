@@ -7,25 +7,25 @@ var serialize = require('node-serialize'),
 const ERROR_LOG_PREFIX = "[cloudpipe] ";
 const ERROR_EXIT_CODE = -1;
 
-// Read result path from arg
+// Read result file path from arg
 opt = getopt.create([
-  [ 'r', 'result-path=ARG', 'path to the result file' ],
+  [ 'r', 'result-file=ARG', 'path to the result file' ],
   [ 'h', 'help',            'display this help' ]
 ])
   .bindHelp()
   .parseSystem();
 
-var resultPath = opt.options['result-path'];
+var resultFile = opt.options['result-file'];
 
-// Make sure resultPath is specified
-if (!resultPath) {
+// Make sure resultFile is specified
+if (!resultFile) {
   // For now, spit out error to STDERR even though it will show up
   // for the end-user. Also, exit with a fixed non-success code
-  process.stderr.write(ERROR_LOG_PREFIX + 'Result path was not specified');
+  process.stderr.write(ERROR_LOG_PREFIX + 'Path to the result file was not specified');
   process.exit(ERROR_EXIT_CODE);
 }
 
-// TODO: recursively create dirs in resultPath if necessary
+// TODO: recursively create dirs in resultFile if necessary
 
 // Read payload from STDIN
 var payload = '';
@@ -52,15 +52,15 @@ process.stdin.on('end', function() {
   // TODO: determine packages
 
   // TODO: This line is not working and emits this error:
-  // $ echo '{"f":"_$$ND_FUNC$$_function (x, y, callback) {\n    callback(null, x + y);\n}","options":{},"args":{"0":2,"1":4,"2":"_$$ND_FUNC$$_function (err, result) {\n  // err == null\n  // result == 6\n}"}}' | node bin/runner.js --result-path ./.result
+  // $ echo '{"f":"_$$ND_FUNC$$_function (x, y, callback) {\n    callback(null, x + y);\n}","options":{},"args":{"0":2,"1":4,"2":"_$$ND_FUNC$$_function (err, result) {\n  // err == null\n  // result == 6\n}"}}' | node bin/runner.js --result-file ./.result
   // undefined:2
   //     callback(null, x + y);
   //     ^
   // TypeError: undefined is not a function
   var result = f.apply(null, args);
 
-  // Write result to resultPath
-  fs.writeFile(resultPath, result, function(err) {
+  // Write result to resultFile
+  fs.writeFile(resultFile, result, function(err) {
 
     if (err) {
       process.stderr.write(ERROR_LOG_PREFIX + 'Could not write result file');
