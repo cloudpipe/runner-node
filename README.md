@@ -41,7 +41,7 @@ $ echo '{"f":"_$$ND_FUNC$$_function (x, y, callback) {\n    callback(null, x + y
 
 2. Base-64 decode the string output in the previous step.
 
-*Note: this requires the `base64` program, available as part of the `coreutils` package.*
+    *Note: this requires the `base64` program, available as part of the `coreutils` package.*
 
     ```bash
     $ payload=$(echo 'eyJmIjoiXyQkTkRfRlVOQyQkX2Z1bmN0aW9uICh4LCB5LCBjYWxsYmFjaykge1xuICBjYWxsYmFjayhudWxsLCB4ICsgeSk7XG4gIHJldHVybiAxNztcbn0iLCJvcHRpb25zIjp7fSwiYXJncyI6eyIwIjoyLCIxIjo0LCIyIjoiXyQkTkRfRlVOQyQkX2Z1bmN0aW9uIChlcnIsIHJlc3VsdCkge1xuICAvLyBlcnIgPT0gbnVsbFxuICAvLyByZXN1bHQgPT0gNlxuICBjb25zb2xlLmxvZyhyZXN1bHQpO1xufSJ9fQ==' | base64 --decode)
