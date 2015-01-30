@@ -1,0 +1,27 @@
+{
+  "name": "cloudpipe-runner",
+  "description": "A Node.js runner for CloudPipe",
+  "version": "0.0.1",
+  "author": "Shaunak Kashyap <ycombinator@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cloudpipe/runner-node"
+  },
+  "keywords": [
+    "cloud",
+    "compute",
+    "remote",
+    "rpc"
+  ],
+  "bin": {
+    "cloudpipe-node-runner": "bin/runner.js"
+  },
+  "preferGlobal": true,
+  "dependencies": {
+    "node-serialize": "0.0.x",
+    "node-getopt": "0.2.x"
+  },
+  "engines": {
+    "node": ">=0.10.8"
+  }
+}
