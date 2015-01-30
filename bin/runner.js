@@ -43,7 +43,10 @@ process.stdin.on('end', function() {
   
   // Determine function to run and arguments
   var f = payload.f;
-  var args = payload.args;
+  var args = []
+  for (argIndex in payload.args) {
+    args.push(payload.args[argIndex]);
+  }
 
   // TODO: determine globals
   // TODO: determine packages
