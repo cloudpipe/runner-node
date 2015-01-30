@@ -51,12 +51,6 @@ process.stdin.on('end', function() {
   // TODO: determine globals
   // TODO: determine packages
 
-  // TODO: This line is not working and emits this error:
-  // $ echo '{"f":"_$$ND_FUNC$$_function (x, y, callback) {\n    callback(null, x + y);\n}","options":{},"args":{"0":2,"1":4,"2":"_$$ND_FUNC$$_function (err, result) {\n  // err == null\n  // result == 6\n}"}}' | node bin/runner.js --result-file ./.result
-  // undefined:2
-  //     callback(null, x + y);
-  //     ^
-  // TypeError: undefined is not a function
   var result = f.apply(null, args);
 
   // Write result to resultFile
